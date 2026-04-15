@@ -449,15 +449,6 @@ export function WorkoutTab(props: any) {
 
                 <StepInfo step={currentStep} />
 
-                {!currentStep.instruction && (
-                  <div className="mb-5 rounded-2xl border-2 border-black bg-white p-4">
-                    <p className="mb-1 font-semibold">
-                      {currentStep.label === "rest" ? "Rest note" : "Tip"}
-                    </p>
-                    <p>{currentStep.tip}</p>
-                  </div>
-                )}
-
                 <div className="flex flex-wrap gap-3">
                   <Button onClick={markCurrentStepDone} className="bg-[#febdcd] text-black">
                     Mark done
@@ -503,21 +494,29 @@ export function WorkoutTab(props: any) {
                 const active = index === currentStepIndex && !activeProgress.isFinished;
                 return (
                   <div
-                    key={step.id}
-                    className={`rounded-2xl border-2 border-black p-3 ${
-                      active ? "bg-[#febdcd]" : step.label === "rest" ? "bg-[#eef8ff]" : "bg-white"
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="font-semibold">{step.name}</p>
-                        <p className="text-sm text-slate-700">{step.detail}</p>
-                        <p className="mt-2">
-                          <Badge className={`border ${getLabelClasses(step.label)}`}>
-                            {step.label}
-                          </Badge>
-                        </p>
-                      </div>
+  key={step.id}
+  className={`rounded-2xl border-2 border-black p-3 ${
+    active ? "bg-[#febdcd]" : step.label === "rest" ? "bg-[#eef8ff]" : "bg-white"
+  }`}
+>
+  <div className="flex items-start justify-between gap-3">
+    <div className="min-w-0">
+      <p className="text-[13px] font-semibold leading-5 break-words">{step.name}</p>
+      <p className="mt-1 text-xs text-slate-700">{step.detail}</p>
+      <div className="mt-2">
+        <Badge className={`border ${getLabelClasses(step.label)}`}>{step.label}</Badge>
+      </div>
+    </div>
+
+    {done ? (
+      <Badge className="shrink-0 rounded-full bg-black text-white">Done</Badge>
+    ) : active ? (
+      <Badge className="shrink-0 rounded-full border-black bg-white text-black">Current</Badge>
+    ) : (
+      <Badge className="shrink-0 rounded-full border-black bg-white text-black">Pending</Badge>
+    )}
+  </div>
+</div>
                       {done ? (
                         <Badge className="rounded-full bg-black text-white">Done</Badge>
                       ) : active ? (
