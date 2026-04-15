@@ -8,6 +8,26 @@ export function Card({
   return <div className={`rounded-3xl border-4 border-black ${className}`}>{children}</div>;
 }
 
+export function CardHeader({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <div className={`p-4 md:p-5 ${className}`}>{children}</div>;
+}
+
+export function CardContent({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <div className={`p-4 md:p-5 ${className}`}>{children}</div>;
+}
+
 export function Button({
   children,
   className = "",
