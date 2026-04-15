@@ -484,52 +484,48 @@ export function WorkoutTab(props: any) {
             </CardContent>
           </PixelCard>
 
-          <PixelCard>
-            <CardHeader>
-              <CardTitle className="text-sm md:text-base">Step List</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {activeFlow.steps.map((step: any, index: number) => {
-                const done = completedStepIds.includes(step.id);
-                const active = index === currentStepIndex && !activeProgress.isFinished;
-                return (
-                  <div
-  key={step.id}
-  className={`rounded-2xl border-2 border-black p-3 ${
-    active ? "bg-[#febdcd]" : step.label === "rest" ? "bg-[#eef8ff]" : "bg-white"
-  }`}
->
-  <div className="flex items-start justify-between gap-3">
-    <div className="min-w-0">
-      <p className="text-[13px] font-semibold leading-5 break-words">{step.name}</p>
-      <p className="mt-1 text-xs text-slate-700">{step.detail}</p>
-      <div className="mt-2">
-        <Badge className={`border ${getLabelClasses(step.label)}`}>{step.label}</Badge>
-      </div>
-    </div>
+<PixelCard>
+  <CardHeader>
+    <CardTitle className="text-sm md:text-base">Step List</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-3">
+    {activeFlow.steps.map((step: any, index: number) => {
+      const done = completedStepIds.includes(step.id);
+      const active = index === currentStepIndex && !activeProgress.isFinished;
 
-    {done ? (
-      <Badge className="shrink-0 rounded-full bg-black text-white">Done</Badge>
-    ) : active ? (
-      <Badge className="shrink-0 rounded-full border-black bg-white text-black">Current</Badge>
-    ) : (
-      <Badge className="shrink-0 rounded-full border-black bg-white text-black">Pending</Badge>
-    )}
-  </div>
-</div>
-                      {done ? (
-                        <Badge className="rounded-full bg-black text-white">Done</Badge>
-                      ) : active ? (
-                        <Badge className="rounded-full border-black bg-white text-black">Current</Badge>
-                      ) : (
-                        <Badge className="rounded-full border-black bg-white text-black">Pending</Badge>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </CardContent>
-          </PixelCard>
+      return (
+        <div
+          key={step.id}
+          className={`rounded-2xl border-2 border-black p-3 ${
+            active ? "bg-[#febdcd]" : step.label === "rest" ? "bg-[#eef8ff]" : "bg-white"
+          }`}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[13px] font-semibold leading-5 break-words">{step.name}</p>
+              <p className="mt-1 text-xs text-slate-700">{step.detail}</p>
+              <div className="mt-2">
+                <Badge className={`border ${getLabelClasses(step.label)}`}>{step.label}</Badge>
+              </div>
+            </div>
+
+            {done ? (
+              <Badge className="shrink-0 rounded-full bg-black text-white">Done</Badge>
+            ) : active ? (
+              <Badge className="shrink-0 rounded-full border-black bg-white text-black">
+                Current
+              </Badge>
+            ) : (
+              <Badge className="shrink-0 rounded-full border-black bg-white text-black">
+                Pending
+              </Badge>
+            )}
+          </div>
+        </div>
+      );
+    })}
+  </CardContent>
+</PixelCard>
 
           {selectedFlow === "postureCheck" && (
             <PixelCard>
