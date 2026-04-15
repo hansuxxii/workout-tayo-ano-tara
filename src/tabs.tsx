@@ -360,27 +360,31 @@ export function WorkoutTab(props: any) {
         <CardHeader>
           <CardTitle className="text-sm md:text-base">Choose Your Flow</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+       <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {flowOrder.map((flowKey) => {
             const flow = workoutFlows[flowKey];
             const isActive = selectedFlow === flowKey;
+
             return (
               <Button
                 key={flowKey}
                 onClick={() => setSelectedFlow(flowKey)}
-                className={`min-h-[120px] h-auto flex-col items-start px-4 py-4 text-left whitespace-normal ${
-                  isActive ? "bg-[#febdcd] text-black" : "bg-white text-black"
+                variant={isActive ? "default" : "outline"}
+                className={`h-auto min-h-[88px] items-start justify-start px-4 py-4 text-left whitespace-normal ${
+                  isActive ? "bg-black text-white" : "bg-white text-black"
                 }`}
               >
-                <span className="text-[11px] font-bold">{flow.shortTitle}</span>
-                <span className="mt-2 text-[10px] leading-5">{flow.title}</span>
+                <div className="flex flex-col items-start gap-2">
+                  <span className="text-[11px] font-bold">{flow.shortTitle}</span>
+                  <span className="text-[10px] leading-4">{flow.title}</span>
+                </div>
               </Button>
             );
           })}
-        </CardContent>
+      </CardContent>
       </PixelCard>
 
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+      <div className="grid items-start gap-6 lg:grid-cols-[1.3fr_0.7fr]">
         <PixelCard>
           <CardHeader>
             <CardTitle className="text-sm md:text-base">Follow Along</CardTitle>
@@ -406,7 +410,7 @@ export function WorkoutTab(props: any) {
               </div>
             ) : (
               <div
-                className={`rounded-3xl border-2 border-black p-4 md:p-6 ${
+                className={`rounded-3xl border-2 border-black p-4 md:p-5 ${
                   currentStep.label === "rest" ? "bg-[#eaf6ff]" : "bg-[#fff9fb]"
                 }`}
               >
