@@ -460,7 +460,7 @@ React.useEffect(() => {
                     <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
                     <p className="mt-2 text-lg">{currentStep.detail}</p>
 {parseTimeToSeconds(currentStep.detail) > 0 && (
-  <div className="mt-4 rounded-2xl border-2 border-black bg-white p-4">
+  <div className="mt-4 w-full rounded-2xl border-2 border-black bg-white p-2">
     <p className="mb-3 text-sm font-semibold">Timer</p>
 
     <div className="rounded-3xl border-4 border-black bg-[#fff5fb] px-4 py-4 text-center">
