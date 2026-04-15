@@ -268,30 +268,41 @@ export default function WorkoutTayoAnoTaraApp() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
-                  <Button onClick={() => setTab("home")} className="h-auto bg-white py-3 text-black">
-                    <div className="flex flex-col items-center gap-2">
-                      <Home className="h-4 w-4" />
-                      <span className="text-[9px]">Home</span>
-                    </div>
-                  </Button>
-                  <Button onClick={() => setTab("workout")} className="h-auto bg-white py-3 text-black">
-                    <div className="flex flex-col items-center gap-2">
-                      <Dumbbell className="h-4 w-4" />
-                      <span className="text-[9px]">Workout</span>
-                    </div>
-                  </Button>
-                  <Button onClick={() => setTab("timer")} className="h-auto bg-white py-3 text-black">
-                    <div className="flex flex-col items-center gap-2">
-                      <TimerReset className="h-4 w-4" />
-                      <span className="text-[9px]">Timer</span>
-                    </div>
-                  </Button>
-                  <Button onClick={() => setTab("progress")} className="h-auto bg-white py-3 text-black">
-                    <div className="flex flex-col items-center gap-2">
-                      <ScrollText className="h-4 w-4" />
-                      <span className="text-[9px]">Progress</span>
-                    </div>
-                  </Button>
+                    <Button
+                      onClick={() => setTab("home")}
+                      variant="outline"
+                      className="h-auto min-h-[72px] flex-col gap-2 bg-white text-black"
+                    >
+                      <Home className="h-5 w-5 text-black" />
+                      <span className="text-[10px] text-black">Home</span>
+                     </Button>
+                  
+                     <Button
+                        onClick={() => setTab("workout")}
+                        variant="outline"
+                        className="h-auto min-h-[72px] flex-col gap-2 bg-white text-black"
+                      >
+                        <Dumbbell className="h-5 w-5 text-black" />
+                        <span className="text-[10px] text-black">Workout</span>
+                     </Button>
+                  
+                     <Button
+                        onClick={() => setTab("timer")}
+                        variant="outline"
+                        className="h-auto min-h-[72px] flex-col gap-2 bg-white text-black"
+                      >
+                        <TimerReset className="h-5 w-5 text-black" />
+                        <span className="text-[10px] text-black">Timer</span>
+                      </Button>
+                  
+                     <Button
+                        onClick={() => setTab("progress")}
+                        variant="outline"
+                        className="h-auto min-h-[72px] flex-col gap-2 bg-white text-black"
+                     >
+                        <ScrollText className="h-5 w-5 text-black" />
+                        <span className="text-[10px] text-black">Progress</span>
+                      </Button>
                 </div>
               </div>
             </CardContent>
