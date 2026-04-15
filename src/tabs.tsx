@@ -460,31 +460,31 @@ React.useEffect(() => {
                     <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
                     <p className="mt-2 text-lg">{currentStep.detail}</p>
 {parseTimeToSeconds(currentStep.detail) > 0 && (
-  <div className="mt-4 rounded-3xl border-2 border-black bg-white p-5">
+  <div className="mt-4 rounded-2xl border-2 border-black bg-white p-4">
     <p className="mb-3 text-sm font-semibold">Timer</p>
 
-    <div className="rounded-3xl border-4 border-black bg-[#fff5fb] px-6 py-8 text-center">
-      <div className="text-4xl md:text-6xl font-bold tracking-wide">
+    <div className="rounded-3xl border-4 border-black bg-[#fff5fb] px-4 py-4 text-center">
+      <div className="text-3xl font-bold tracking-wide md:text-5xl">
         {formatStepTime(stepSeconds)}
       </div>
     </div>
 
-    <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+    <div className="mt-3 flex items-center justify-center gap-3">
       <Button
         onClick={() => setIsStepRunning(true)}
-        className="h-14 w-14 rounded-2xl p-0"
+        className="h-11 w-11 rounded-2xl p-0"
         aria-label="Start timer"
       >
-        <Play className="h-5 w-5" />
+        <Play className="h-4 w-4" />
       </Button>
 
       <Button
         onClick={() => setIsStepRunning(false)}
         variant="outline"
-        className="h-14 w-14 rounded-2xl bg-white p-0 text-black"
+        className="h-11 w-11 rounded-2xl bg-white p-0 text-black"
         aria-label="Pause timer"
       >
-        <Pause className="h-5 w-5" />
+        <Pause className="h-4 w-4" />
       </Button>
 
       <Button
@@ -492,15 +492,14 @@ React.useEffect(() => {
           setStepSeconds(parseTimeToSeconds(currentStep.detail));
           setIsStepRunning(false);
         }}
-        className="h-14 w-14 rounded-2xl bg-[#febdcd] p-0 text-black"
+        className="h-11 w-11 rounded-2xl bg-[#febdcd] p-0 text-black"
         aria-label="Reset timer"
       >
-        <TimerReset className="h-5 w-5" />
+        <TimerReset className="h-4 w-4" />
       </Button>
     </div>
   </div>
-)}
-                  </div>
+)}                  </div>
                   <div className="flex flex-col items-end gap-2">
                     <Badge className={`border ${getLabelClasses(currentStep.label)}`}>
                       {currentStep.label}
