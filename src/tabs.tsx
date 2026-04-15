@@ -453,26 +453,26 @@ React.useEffect(() => {
                 }`}
               >
                 <div className="mb-4 flex items-start justify-between gap-4">
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold">
                       Step {currentStepIndex + 1} of {activeFlow.steps.length}
                     </p>
                     <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
                     <p className="mt-2 text-lg">{currentStep.detail}</p>
 {parseTimeToSeconds(currentStep.detail) > 0 && (
-  <div className="mt-4 w-full rounded-2xl border-2 border-black bg-white p-2">
-    <p className="mb-3 text-sm font-semibold">Timer</p>
+  <div className="mt-4 w-full rounded-2xl border-2 border-black bg-white p-3">
+    <p className="mb-2 text-sm font-semibold">Timer</p>
 
-    <div className="rounded-3xl border-4 border-black bg-[#fff5fb] px-4 py-4 text-center">
-      <div className="text-3xl font-bold tracking-wide md:text-5xl">
+    <div className="rounded-3xl border-4 border-black bg-[#fff5fb] px-3 py-2 text-center">
+      <div className="text-2xl font-bold tracking-wide md:text-4xl">
         {formatStepTime(stepSeconds)}
       </div>
     </div>
 
-    <div className="mt-3 flex items-center justify-center gap-3">
+    <div className="mt-2 flex items-center justify-center gap-2">
       <Button
         onClick={() => setIsStepRunning(true)}
-        className="h-11 w-11 rounded-2xl p-0"
+        className="h-10 w-10 rounded-2xl p-0"
         aria-label="Start timer"
       >
         <Play className="h-4 w-4" />
@@ -481,7 +481,7 @@ React.useEffect(() => {
       <Button
         onClick={() => setIsStepRunning(false)}
         variant="outline"
-        className="h-11 w-11 rounded-2xl bg-white p-0 text-black"
+        className="h-10 w-10 rounded-2xl bg-white p-0 text-black"
         aria-label="Pause timer"
       >
         <Pause className="h-4 w-4" />
@@ -492,7 +492,7 @@ React.useEffect(() => {
           setStepSeconds(parseTimeToSeconds(currentStep.detail));
           setIsStepRunning(false);
         }}
-        className="h-11 w-11 rounded-2xl bg-[#febdcd] p-0 text-black"
+        className="h-10 w-10 rounded-2xl bg-[#febdcd] p-0 text-black"
         aria-label="Reset timer"
       >
         <TimerReset className="h-4 w-4" />
