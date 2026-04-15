@@ -354,6 +354,43 @@ export function WorkoutTab(props: any) {
     nextStep,
   } = props;
 
+  const [stepSeconds, setStepSeconds] = React.useState(0);
+const [isStepRunning, setIsStepRunning] = React.useState(false);
+
+function parseTimeToSeconds(detail: string) {
+  if (!detail) return 0;
+
+  const secMatch = detail.match(/(\d+)\s*sec/i);
+  if (secMatch) return parseInt(secMatch[1], 10);
+
+  const minMatch = detail.match(/(\d+)\s*min/i);
+  if (minMatch) return parseInt(minMatch[1], 10) * 60;
+
+  return 0;
+}
+
+function formatStepTime(total: number) {
+  const mins = Math.floor(total / 60);
+  const secs = total % 60;
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
+React.useEffect(() => {
+  const seconds = parseTimeToSeconds(currentStep?.detail || "");
+  setStepSeconds(seconds);
+  setIsStepRunning(false);
+}, [currentStep]);
+
+React.useEffect(() => {
+  if (!isStepRunning || stepSeconds <= 0) return;
+
+  const interval = setInterval(() => {
+    setStepSeconds((prev) => prev - 1);
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, [isStepRunning, stepSeconds]);
+
   return (
     <div className="space-y-6">
       <PixelCard>
@@ -421,6 +458,41 @@ export function WorkoutTab(props: any) {
                     </p>
                     <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
                     <p className="mt-2 text-lg">{currentStep.detail}</p>
+                    {parseTimeToSeconds(currentStep.detail) > 0 && (
+  <div className="mt-4 rounded-2xl border-2 border-black bg-white p-4">
+    <p className="mb-2 text-sm font-semibold">Step Timer</p>
+
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="text-2xl font-bold">
+        {formatStepTime(stepSeconds)}
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => setIsStepRunning(true)} className="min-w-[110px]">
+          Start
+        </Button>
+
+        <Button
+          onClick={() => setIsStepRunning(false)}
+          variant="outline"
+          className="min-w-[110px] bg-white text-black"
+        >
+          Pause
+        </Button>
+
+        <Button
+          onClick={() => {
+            setStepSeconds(parseTimeToSeconds(currentStep.detail));
+            setIsStepRunning(false);
+          }}
+          className="min-w-[110px] bg-[#febdcd] text-black"
+        >
+          Reset
+        </Button>
+      </div>
+    </div>
+  </div>
+)}
                   </div>
                   <div className="flex flex-col items-end gap-2">
                     <Badge className={`border ${getLabelClasses(currentStep.label)}`}>
