@@ -460,43 +460,44 @@ React.useEffect(() => {
                     <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
                     <p className="mt-2 text-lg">{currentStep.detail}</p>
 {parseTimeToSeconds(currentStep.detail) > 0 && (
-  <div className="mt-4 w-full rounded-2xl border-2 border-black bg-white p-3">
-    <p className="mb-2 text-sm font-semibold">Timer</p>
-
-    <div className="rounded-3xl border-4 border-black bg-[#fff5fb] px-3 py-2 text-center">
-      <div className="text-2xl font-bold tracking-wide md:text-4xl">
-        {formatStepTime(stepSeconds)}
+  <div className="mt-4 w-full rounded-2xl border-2 border-black bg-white px-4 py-3">
+    <div className="flex items-center justify-between gap-3">
+      <div className="min-w-0">
+        <p className="mb-1 text-xs font-semibold">Timer</p>
+        <div className="text-3xl font-bold leading-none md:text-4xl">
+          {formatStepTime(stepSeconds)}
+        </div>
       </div>
-    </div>
 
-    <div className="mt-2 flex items-center justify-center gap-2">
-      <Button
-        onClick={() => setIsStepRunning(true)}
-        className="h-10 w-10 rounded-2xl p-0"
-        aria-label="Start timer"
-      >
-        <Play className="h-4 w-4" />
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button
+          onClick={() => setIsStepRunning(true)}
+          className="h-10 w-10 rounded-2xl p-0"
+          aria-label="Start timer"
+        >
+          <Play className="h-4 w-4" />
+        </Button>
 
-      <Button
-        onClick={() => setIsStepRunning(false)}
-        variant="outline"
-        className="h-10 w-10 rounded-2xl bg-white p-0 text-black"
-        aria-label="Pause timer"
-      >
-        <Pause className="h-4 w-4" />
-      </Button>
+        <Button
+          onClick={() => setIsStepRunning(false)}
+          variant="outline"
+          className="h-10 w-10 rounded-2xl bg-white p-0 text-black"
+          aria-label="Pause timer"
+        >
+          <Pause className="h-4 w-4" />
+        </Button>
 
-      <Button
-        onClick={() => {
-          setStepSeconds(parseTimeToSeconds(currentStep.detail));
-          setIsStepRunning(false);
-        }}
-        className="h-10 w-10 rounded-2xl bg-[#febdcd] p-0 text-black"
-        aria-label="Reset timer"
-      >
-        <TimerReset className="h-4 w-4" />
-      </Button>
+        <Button
+          onClick={() => {
+            setStepSeconds(parseTimeToSeconds(currentStep.detail));
+            setIsStepRunning(false);
+          }}
+          className="h-10 w-10 rounded-2xl bg-[#febdcd] p-0 text-black"
+          aria-label="Reset timer"
+        >
+          <TimerReset className="h-4 w-4" />
+        </Button>
+      </div>
     </div>
   </div>
 )}                  </div>
