@@ -480,3 +480,5 @@ export const dailyDefaults = {
   deskFix: false,
   addon: false,
 };
+
+export const timerPresets = [20, 30, 60, 120, 300];
