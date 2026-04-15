@@ -360,28 +360,28 @@ export function WorkoutTab(props: any) {
         <CardHeader>
           <CardTitle className="text-sm md:text-base">Choose Your Flow</CardTitle>
         </CardHeader>
-       <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {flowOrder.map((flowKey) => {
-            const flow = workoutFlows[flowKey];
-            const isActive = selectedFlow === flowKey;
+<CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+  {flowOrder.map((flowKey) => {
+    const flow = workoutFlows[flowKey];
+    const isActive = selectedFlow === flowKey;
 
-            return (
-              <Button
-                key={flowKey}
-                onClick={() => setSelectedFlow(flowKey)}
-                variant={isActive ? "default" : "outline"}
-                className={`h-auto min-h-[88px] items-start justify-start px-4 py-4 text-left whitespace-normal ${
-                  isActive ? "bg-black text-white" : "bg-white text-black"
-                }`}
-              >
-                <div className="flex flex-col items-start gap-2">
-                  <span className="text-[11px] font-bold">{flow.shortTitle}</span>
-                  <span className="text-[10px] leading-4">{flow.title}</span>
-                </div>
-              </Button>
-            );
-          })}
-      </CardContent>
+    return (
+      <Button
+        key={flowKey}
+        onClick={() => setSelectedFlow(flowKey)}
+        variant={isActive ? "default" : "outline"}
+        className={`h-auto min-h-[96px] items-start justify-start px-4 py-4 text-left whitespace-normal ${
+          isActive ? "bg-black text-white" : "bg-white text-black"
+        }`}
+      >
+        <div className="flex flex-col items-start gap-2">
+          <span className="text-[11px] font-bold">{flow.shortTitle}</span>
+          <span className="text-[10px] leading-4">{flow.title}</span>
+        </div>
+      </Button>
+    );
+  })}
+</CardContent>
       </PixelCard>
 
       <div className="grid items-start gap-6 lg:grid-cols-[1.3fr_0.7fr]">
@@ -574,38 +574,47 @@ export function TimerTab(props: any) {
 
           <div className="mb-5 grid grid-cols-2 gap-3 md:grid-cols-5">
             {timerPresets.map((preset) => (
-              <Button
-                key={preset}
-                onClick={() => {
-                  setSecondsLeft(preset);
-                  setIsRunning(false);
-                }}
-                className="bg-white text-black"
-              >
-                {preset >= 60 ? `${preset / 60} min` : `${preset} sec`}
-              </Button>
-            ))}
+  <Button
+    key={preset}
+    onClick={() => {
+      setSecondsLeft(preset);
+      setIsRunning(false);
+    }}
+    variant="outline"
+    className="min-h-[72px] flex-col gap-2 bg-white text-black"
+  >
+    <span className="text-[11px] font-bold">
+      {preset >= 60 ? `${preset / 60} min` : `${preset} sec`}
+    </span>
+  </Button>
+))}
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button onClick={() => setIsRunning(true)}>
-              <Play className="mr-2 h-4 w-4" />
-              Start
-            </Button>
-            <Button onClick={() => setIsRunning(false)} className="bg-white text-black">
-              <Pause className="mr-2 h-4 w-4" />
-              Pause
-            </Button>
-            <Button
-              onClick={() => {
-                setIsRunning(false);
-                setSecondsLeft(60);
-              }}
-              className="bg-[#febdcd] text-black"
-            >
-              <RotateCcw className="mr-2 h-4 w-4" />
-              Reset
-            </Button>
+          <div className="mt-2 flex flex-wrap justify-center gap-4">
+<Button onClick={() => setIsRunning(true)} className="min-w-[160px]">
+  <Play className="mr-2 h-4 w-4" />
+  Start
+</Button>
+
+<Button
+  onClick={() => setIsRunning(false)}
+  variant="outline"
+  className="min-w-[160px] bg-white text-black"
+>
+  <Pause className="mr-2 h-4 w-4" />
+  Pause
+</Button>
+
+<Button
+  onClick={() => {
+    setIsRunning(false);
+    setSecondsLeft(60);
+  }}
+  className="min-w-[160px] bg-[#febdcd] text-black"
+>
+  <RotateCcw className="mr-2 h-4 w-4" />
+  Reset
+</Button>
           </div>
         </CardContent>
       </PixelCard>
