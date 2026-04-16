@@ -452,24 +452,36 @@ React.useEffect(() => {
                   currentStep.label === "rest" ? "bg-[#eaf6ff]" : "bg-[#fff9fb]"
                 }`}
               >
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold">
-                      Step {currentStepIndex + 1} of {activeFlow.steps.length}
-                    </p>
-                    <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
-                    <p className="mt-2 text-lg">{currentStep.detail}</p>
-{parseTimeToSeconds(currentStep.detail) > 0 && (
-  <div className="mt-4 w-full rounded-2xl border-2 border-black bg-white px-4 py-3">
-    <div className="flex items-center justify-between gap-3">
-      <div className="min-w-0">
-        <p className="mb-1 text-xs font-semibold">Timer</p>
-        <div className="text-3xl font-bold leading-none md:text-4xl">
-          {formatStepTime(stepSeconds)}
-        </div>
+<div className="mb-4 grid gap-4 md:grid-cols-[1fr_280px] md:items-start">
+  <div className="min-w-0">
+    <p className="text-sm font-semibold">
+      Step {currentStepIndex + 1} of {activeFlow.steps.length}
+    </p>
+
+    <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
+
+    <p className="mt-2 text-lg">{currentStep.detail}</p>
+
+    <div className="mt-3 flex flex-wrap items-center gap-2">
+      <Badge className={`border ${getLabelClasses(currentStep.label)}`}>
+        {currentStep.label}
+      </Badge>
+
+      {completedStepIds.includes(currentStep.id) && (
+        <CheckCircle2 className="h-6 w-6" />
+      )}
+    </div>
+  </div>
+
+  {parseTimeToSeconds(currentStep.detail) > 0 && (
+    <div className="w-full rounded-2xl border-2 border-black bg-white px-4 py-3">
+      <p className="mb-2 text-xs font-semibold">Timer</p>
+
+      <div className="text-3xl font-bold leading-none md:text-4xl">
+        {formatStepTime(stepSeconds)}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="mt-3 flex items-center gap-2">
         <Button
           onClick={() => setIsStepRunning(true)}
           className="h-10 w-10 rounded-2xl p-0"
@@ -499,6 +511,8 @@ React.useEffect(() => {
         </Button>
       </div>
     </div>
+  )}
+</div>
   </div>
 )}                  </div>
                   <div className="flex flex-col items-end gap-2">
