@@ -491,30 +491,69 @@ React.useEffect(() => {
         </Button>
 
         <Button
-          onClick={() => setIsStepRunning(false)}
-          variant="outline"
-          className="h-10 w-10 rounded-2xl bg-white p-0 text-black"
-          aria-label="Pause timer"
-        >
-          <Pause className="h-4 w-4" />
-        </Button>
+          onCl<div className="mb-4 grid gap-4 md:grid-cols-[1fr_260px] md:items-start">
+  <div className="min-w-0">
+    <p className="text-sm font-semibold">
+      Step {currentStepIndex + 1} of {activeFlow.steps.length}
+    </p>
 
-        <Button
+    <h2 className="mt-2 text-2xl font-bold md:text-3xl">{currentStep.name}</h2>
+
+    <p className="mt-2 text-lg">{currentStep.detail}</p>
+
+    <div className="mt-3 flex flex-wrap items-center gap-2">
+      <Badge className={`border ${getLabelClasses(currentStep.label)}`}>
+        {currentStep.label}
+      </Badge>
+
+      {completedStepIds.includes(currentStep.id) && (
+        <CheckCircle2 className="h-6 w-6" />
+      )}
+    </div>
+  </div>
+
+  {parseTimeToSeconds(currentStep.detail) > 0 && (
+    <div className="flex flex-col items-end">
+      <div className="w-full rounded-none border-4 border-black bg-white px-4 py-3 text-center">
+        <div className="text-3xl font-bold leading-none md:text-4xl">
+          {formatStepTime(stepSeconds)}
+        </div>
+      </div>
+
+      <div className="mt-2 flex items-center gap-4 pr-1">
+        <button
+          type="button"
+          onClick={() => setIsStepRunning(true)}
+          aria-label="Start timer"
+          className="bg-transparent p-0 text-black hover:opacity-70"
+        >
+          <Play className="h-6 w-6" />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setIsStepRunning(false)}
+          aria-label="Pause timer"
+          className="bg-transparent p-0 text-black hover:opacity-70"
+        >
+          <Pause className="h-6 w-6" />
+        </button>
+
+        <button
+          type="button"
           onClick={() => {
             setStepSeconds(parseTimeToSeconds(currentStep.detail));
             setIsStepRunning(false);
           }}
-          className="h-10 w-10 rounded-2xl bg-[#febdcd] p-0 text-black"
           aria-label="Reset timer"
+          className="bg-transparent p-0 text-black hover:opacity-70"
         >
-          <TimerReset className="h-4 w-4" />
-        </Button>
+          <TimerReset className="h-6 w-6" />
+        </button>
       </div>
     </div>
   )}
 </div>
-  </div>
-)}                  </div>
                   <div className="flex flex-col items-end gap-2">
                     <Badge className={`border ${getLabelClasses(currentStep.label)}`}>
                       {currentStep.label}
